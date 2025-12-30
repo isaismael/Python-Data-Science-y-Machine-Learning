@@ -37,4 +37,24 @@ print(fechas)
 
 # - - -
 print("- - - Dataframe con csv - - -");
-route = f"12-pandas-datos-temporales\Mercado+de+Valores+España.csv"
+route = r"12-pandas-datos-temporales\Mercado+de+Valores+España.csv"
+df_csv = pd.read_csv(route);
+print(df_csv)
+
+print("- - - Dataframe con csv - - -");
+test = df_csv['Fecha'][0];
+print(type(test))
+
+print("- - - Dataframe con csv convertir str a fecha - - -");
+df_csv['Fecha'] = pd.to_datetime(df_csv['Fecha'], format='%d/%m/%Y');
+print(df_csv);
+print(type(df_csv['Fecha'][0]));
+
+print("- - - Dataframe con csv traer info de fecha - - -")
+print(df_csv['Fecha'][44].year);
+print(df_csv['Fecha'][44].month);
+print(df_csv['Fecha'][44].day);
+
+print("- - - modificar datos de fecha del df - - -");
+df_mas_5_dias = df_csv['Fecha'] + pd.Timedelta(days=5);
+print(f"fecha modificada: \n{df_mas_5_dias}");
